@@ -1,0 +1,7 @@
+# Host *
+#  ForwardAgent yes
+
+GSSAPIAuthentication no
+
+Host github.com
+  IdentityFile id_rsa_navisite

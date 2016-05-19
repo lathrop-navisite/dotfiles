@@ -1,0 +1,34 @@
+#Change to clarkson mirror
+# Install nvidia additional driver
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install remmina ipython emacs24 screen git python-dev python-pip icedtea-* ipython
+mkdir -p ~/src/git
+cd ~
+wget https://raw.githubusercontent.com/lathrop-navisite/dotfiles/start/.emacs
+wget https://raw.githubusercontent.com/lathrop-navisite/dotfiles/start/.screenrc
+#Generate ssh key and upload to github
+mkdir -p ~/.ssh
+cd ~/.ssh
+ssh-keygen -t rsa
+cat github.pub
+
+#emacs installation
+mkdir ~/.emacs.d/{packages,vendor}
+cd ~/.emacs.d/vendor
+git clone https://gitlab.com/python-mode-devs/python-mode.git
+cd python-mode
+make check
+sudo make install
+cd ~/.emacs.d/vendor
+git clone https://github.com/python-rope/ropemacs.git
+cd ropemacs/
+sudo python setup.py install
+
+cd ~/.emacs.d/packages
+wget https://www.emacswiki.org/emacs/download/fill-column-indicator.el
+sudo apt-get install python-rope
+sudo pip install ropemacs rope
+
+cd ~/.emacs.d/packages
+git clone --recursive https://github.com/capitaomorte/yasnippet

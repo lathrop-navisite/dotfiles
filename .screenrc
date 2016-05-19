@@ -1,0 +1,35 @@
+escape ^``
+
+hardstatus alwayslastline
+hardstatus string "%{= kw} $USER | %-=%-Lw%{= kG}( %n %t )%{= kw}%+Lw%-= | %{= kw}%M %d %c "
+#hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
+
+startup_message off
+vbell off
+defscrollback 4096
+
+
+# cannot for the life of me get M-v to scroll upwards, but I have an
+#   approximating solution that scrolls up 40 characters, thanks to 
+#   this guy, who is a legend:
+#
+#        http://www.staldal.nu/tech/2009/01/11/
+#          how-to-use-mousewheel-in-gnu-screen/comment-page-1/
+#
+bindkey -m "^[v" stuff "40\025"
+
+# other emacs-like keybindings for copy mode
+markkeys "h=^B:l=^F:$=^E:^F=^V"
+bindkey -m "^[<" stuff "g"
+bindkey -m "^[>" stuff "G"
+
+# %{= ky}     set color to yellow on black.
+# %{= yk}     set color to black on yellow.
+# %{=r}       reverse the color attrs
+# %-Lw        all window #s, titles, and flags before the current window.
+# %n %t       current window number and title.
+# %+Lw        all windows #s, titles, and flags after the current window.
+# %-=         pad remaining spaces.
+# %M%d        month and day, like MmmDD.
+# %c          current time, like HH:MM.
+# %H          hostname
